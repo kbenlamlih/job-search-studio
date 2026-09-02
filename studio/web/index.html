@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Studio</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%8A%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="app" class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">🕊</span>
+          <span class="brand-text">Job Studio</span>
+        </div>
+
+        <nav id="nav" class="nav" aria-label="Sections"></nav>
+
+        <div class="sidebar-foot">
+          <button id="theme-toggle" class="ghost small" type="button">
+            <span data-theme-label>Dark</span>
+          </button>
+          <span id="conn" class="conn" title="Connection to Claude"></span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1 id="view-title">Today</h1>
+            <p id="view-sub" class="sub"></p>
+          </div>
+          <div id="topbar-actions" class="topbar-actions"></div>
+        </header>
+        <div id="view" class="view"></div>
+      </main>
+
+      <section id="console" class="console collapsed" aria-label="What Claude is doing">
+        <button id="console-toggle" class="console-head" type="button" aria-expanded="false">
+          <span id="console-dot" class="dot idle" aria-hidden="true"></span>
+          <span id="console-title">Nothing running</span>
+          <span id="console-timer" class="console-timer"></span>
+          <span class="console-chev" aria-hidden="true">⌃</span>
+        </button>
+        <div class="console-body">
+          <div id="console-todos" class="todos" hidden></div>
+          <div id="console-feed" class="feed" role="log" aria-live="polite"></div>
+          <div id="console-reply" class="reply" hidden>
+            <label class="reply-label" for="reply-input">Claude is waiting for you</label>
+            <div class="reply-row">
+              <textarea id="reply-input" rows="2" placeholder="Type your answer and press Enter"></textarea>
+              <button id="reply-send" class="primary" type="button">Send</button>
+            </div>
+            <div class="reply-actions">
+              <button id="run-continue" class="ghost small" type="button">Carry on</button>
+              <button id="run-finish" class="ghost small" type="button">All done with this</button>
+              <button id="run-stop" class="ghost small danger" type="button">Stop</button>
+            </div>
+          </div>
+          <div id="console-running" class="reply" hidden>
+            <div class="reply-actions">
+              <span class="muted small" id="console-hint">Working. You can leave this open and come back.</span>
+              <button id="run-stop-2" class="ghost small danger" type="button">Stop</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <dialog id="task-dialog" class="dialog">
+      <form method="dialog" id="task-form">
+        <h2 id="task-title">Start</h2>
+        <p id="task-blurb" class="sub"></p>
+        <div id="task-caution" class="callout warn" hidden></div>
+        <label id="task-arg-wrap" class="field" hidden>
+          <span id="task-arg-label">Details</span>
+          <textarea id="task-arg" rows="3"></textarea>
+        </label>
+        <p id="task-eta" class="muted small"></p>
+        <menu>
+          <button value="cancel" class="ghost" type="submit">Cancel</button>
+          <button value="go" id="task-go" class="primary" type="submit">Start</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="doc-dialog" class="dialog wide">
+      <div class="dialog-head">
+        <h2 id="doc-title">Document</h2>
+        <button id="doc-close" class="ghost small" type="button">Close</button>
+      </div>
+      <div id="doc-body" class="doc-body"></div>
+    </dialog>
+
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+# The framework itself is fetched by the installer, not committed here.
+#
+# Two reasons this matters more than repo size (it is 1 GB with the scrapers'
+# node_modules): it stays MIT-licensed code living in its own upstream checkout, and
+# HER DATA CANNOT BE PUSHED. /setup writes a name, contact details, employment history
+# and salary expectations into files inside workspace/. Upstream warns about exactly
+# this - a fork of a public repo is always public. Keeping workspace/ untracked means
+# there is no path from her CV to a git remote.
+workspace/
+
+# App state: run transcripts, settings, pristine copies of the profile templates.
+studio/.data/
+studio/node_modules/
+
+# Installer breadcrumb
+.studio-env
+
+# macOS
+.DS_Store
